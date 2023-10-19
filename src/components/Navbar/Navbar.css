@@ -63,7 +63,7 @@ nav {
   }
   
   .emph {
-    color: #0B98FF;
+    color: #00388b;
   }
   
   .nav__icon {
@@ -88,7 +88,7 @@ nav {
   }
   
   .link a:hover {
-    color: #3685fb;
+    color: #00388b;
   }
   
   /* Media queries for mobile responsiveness */
@@ -138,19 +138,19 @@ nav {
       }
   }
   .btn1{
-    border: 2px solid #3685fb;
+    border: 2px solid #00388b;
     background-color: white;
     color: black;
     border-radius: 50px;
   }
   
   .btn1:hover{
-    background-color: #3685fb;
+    background-color: #00388b;
     color: white;
   }
   
   .btn2{
-    border: 2px solid #3685fb;
+    border: 2px solid #00388b;
     background-color: white;
     color: black;
     border-radius: 50px;
@@ -162,7 +162,7 @@ nav {
   }
   
   .btn2:hover{
-    background-color: #3685fb;
+    background-color: #00388b;
     color: white;
   }
 

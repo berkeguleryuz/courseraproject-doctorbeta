@@ -69,7 +69,7 @@ const AppointmentForm = ({ doctorName, doctorSpeciality, onSubmit }) => {
           <option value="17:30"> 17:30 </option>
         </select>
       </div>
-      <button type="submit">Book Now</button>
+      <button type="submit" className="bg-blue-700">Book Now</button>
     </form>
   );
 };

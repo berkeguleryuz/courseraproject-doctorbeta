@@ -6,7 +6,7 @@ function App() {
       <div className="bg-indigo-500 self-stretch flex w-full flex-col pb-2 px-5 max-md:max-w-full">
         <div className="self-center flex w-full max-w-[1457px] items-start justify-between gap-5 max-md:max-w-full max-md:flex-wrap max-md:justify-center">
           <div className="text-black text-2xl self-center max-w-[307px] grow shrink-0 basis-auto my-auto">
-            Medical Appoinment Booking Apps
+            Medical Appoinment Booking App
           </div>
           <FindDoctorSearchIC />
           <div className="text-black text-center text-5xl self-center my-auto max-md:text-4xl">

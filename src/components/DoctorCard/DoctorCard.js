@@ -1,21 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css';
-import './DoctorCard.css';
-import AppointmentForm from '../AppointmentForm/AppointmentForm'
-import { v4 as uuidv4 } from 'uuid';
-
+import React, { useEffect, useState } from "react";
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
+import "./DoctorCard.css";
+import AppointmentForm from "../AppointmentForm/AppointmentForm";
+import { v4 as uuidv4 } from "uuid";
 
 const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
   const [showModal, setShowModal] = useState(false);
-  const [appointments, setAppointments] = useState(JSON.parse(localStorage.getItem("appointmentData"))||[]);
+  const [appointments, setAppointments] = useState(
+    JSON.parse(localStorage.getItem("appointmentData")) || [],
+  );
 
   const handleBooking = () => {
     setShowModal(true);
   };
 
   const handleCancel = (appointmentId) => {
-    const updatedAppointments = appointments.filter((appointment) => appointment.id !== appointmentId);
+    const updatedAppointments = appointments.filter(
+      (appointment) => appointment.id !== appointmentId,
+    );
     setAppointments(updatedAppointments);
     localStorage.removeItem("doctorData");
     localStorage.removeItem("appointmentData");
@@ -28,9 +31,12 @@ const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
     };
     const updatedAppointments = [...appointments, newAppointment];
     setAppointments(updatedAppointments);
-    console.log(updatedAppointments)
-    localStorage.setItem("appointmentData",JSON.stringify(updatedAppointments))
-    localStorage.setItem("doctorData",JSON.stringify(name))
+    console.log(updatedAppointments);
+    localStorage.setItem(
+      "appointmentData",
+      JSON.stringify(updatedAppointments),
+    );
+    localStorage.setItem("doctorData", JSON.stringify(name));
     setShowModal(false);
   };
 
@@ -38,13 +44,22 @@ const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
     <div className="doctor-card-container">
       <div className="doctor-card-details-container">
         <div className="doctor-card-profile-image-container">
-        <img src={`https://res.cloudinary.com/dcrome1pq/image/upload/v1697389262/Capstone/doc${Math.ceil(3*Math.random())}.png`} alt="doctorImage"/>
+          <img
+            src={`https://res.cloudinary.com/dcrome1pq/image/upload/v1697389262/Capstone/doc${Math.ceil(
+              3 * Math.random(),
+            )}.png`}
+            alt="doctorImage"
+          />
         </div>
         <div className="doctor-card-details">
           <div className="doctor-card-detail-name">{name}</div>
           <div className="doctor-card-detail-speciality">{speciality}</div>
-          <div className="doctor-card-detail-experience">{experience} years experience</div>
-          <div className="doctor-card-detail-consultationfees">Ratings: {ratings}</div>
+          <div className="doctor-card-detail-experience">
+            {experience} years experience
+          </div>
+          <div className="doctor-card-detail-consultationfees">
+            Ratings: {ratings}
+          </div>
         </div>
         {/* for reference  */}
         {/* <div>
@@ -55,12 +70,14 @@ const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
               </div> */}
       </div>
 
-
       <div className="doctor-card-options-container">
-       <Popup
-          style={{ backgroundColor: '#FFFFFF' }}
+        <Popup
+          style={{ backgroundColor: "#FFFFFF" }}
           trigger={
-            <button className={`book-appointment-btn ${appointments.length > 0 ? 'cancel-appointment' : ''}`}>
+            <button
+              className={`book-appointment-btn ${
+                appointments.length > 0 ? "cancel-appointment" : ""
+              }`}>
               {appointments.length > 0 ? (
                 <div>Cancel Appointment</div>
               ) : (
@@ -71,39 +88,57 @@ const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
           }
           modal
           open={showModal}
-          onClose={() => setShowModal(false)}
-        >
+          onClose={() => setShowModal(false)}>
           {(close) => (
-            <div className="doctorbg" style={{ height: '100vh', overflow: 'scroll' }}>
+            <div
+              className="doctorbg"
+              style={{ height: "100vh", overflow: "scroll" }}>
               <div>
                 <div className="doctor-card-profile-image-container">
-                <img src={`https://res.cloudinary.com/dcrome1pq/image/upload/v1697389262/Capstone/doc${Math.ceil(3*Math.random())}.png`} alt="doctorImage"/>
+                  <img
+                    src={`https://res.cloudinary.com/dcrome1pq/image/upload/v1697389262/Capstone/doc${Math.ceil(
+                      3 * Math.random(),
+                    )}.png`}
+                    alt="doctorImage"
+                  />
                 </div>
                 <div className="doctor-card-details">
                   <div className="doctor-card-detail-name">{name}</div>
-                  <div className="doctor-card-detail-speciality">{speciality}</div>
-                  <div className="doctor-card-detail-experience">{experience} years experience</div>
-                  <div className="doctor-card-detail-consultationfees">Ratings: {ratings}</div>
+                  <div className="doctor-card-detail-speciality">
+                    {speciality}
+                  </div>
+                  <div className="doctor-card-detail-experience">
+                    {experience} years experience
+                  </div>
+                  <div className="doctor-card-detail-consultationfees">
+                    Ratings: {ratings}
+                  </div>
                 </div>
               </div>
 
               {appointments.length > 0 ? (
                 <>
-                  <h3 style={{ textAlign: 'center' }}>Appointment Booked!</h3>
+                  <h3 style={{ textAlign: "center" }}>Appointment Booked!</h3>
                   {appointments.map((appointment) => (
                     <div className="bookedInfo" key={appointment.id}>
                       <p>Name: {appointment.name}</p>
                       <p>Phone Number: {appointment.phoneNumber}</p>
-                      <button onClick={() => handleCancel(appointment.id)}>Cancel Appointment</button>
+                      <button onClick={() => handleCancel(appointment.id)}>
+                        Cancel Appointment
+                      </button>
                     </div>
                   ))}
                 </>
               ) : (
-                <AppointmentForm doctorName={name} doctorSpeciality={speciality} onSubmit={handleFormSubmit} />
+                <AppointmentForm
+                  doctorName={name}
+                  doctorSpeciality={speciality}
+                  onSubmit={handleFormSubmit}
+                />
               )}
             </div>
           )}
-        </Popup> 
+        </Popup>
       </div>
     </div>
   );
